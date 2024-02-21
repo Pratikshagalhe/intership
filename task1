@@ -1,0 +1,55 @@
+package com.intershipTask;
+
+import java.util.Scanner;
+import java.util.Random;
+public class Task1 {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		Random random=new Random();
+		
+		int lowerNumber=1;
+		int highstNumber=100;
+		int numberOfAttents=8;
+		int score=0;
+		
+		
+			do {
+				int number=random.nextInt(highstNumber-lowerNumber+1)+lowerNumber;
+				int attempts=0;
+				int userGuess;
+				
+				System.out.println("Guess the number between "+lowerNumber+" and"+ highstNumber+".");
+			
+				do {
+				System.out.println("Enter your guess: ");
+				userGuess=sc.nextInt();
+				attempts++;
+				
+				if(userGuess==number) {
+					System.out.println("Congratulations! You guessed the correct number in "+attempts+" attempts");
+					score+=attempts;
+				}
+				else if(userGuess<number) {
+					System.out.println("Too low. try again.");
+				}
+				else {
+					System.out.println("Too high.Try again.");
+				}
+			}while(userGuess!=number && attempts<numberOfAttents);
+				
+				if(attempts== numberOfAttents) {
+					System.out.println("Sorry,you've run out of attempts. the correct number was: "+number+"\n");
+				}else {
+					System.out.println("your current score: "+score);
+					System.out.println("Do you want to play again? (yes/no):");
+				}
+			
+}while(sc.next().equalsIgnoreCase("yes"));
+		
+			
+		System.out.println("Thanks for playing! Your final score is: "+score);
+		sc.close();
+}
+		
+}
