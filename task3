@@ -1,0 +1,102 @@
+package com.intershipTask;
+import java.util.*;
+
+class BankAccount{
+	private double balance;
+	public BankAccount(int balance) {
+		this.balance=balance;
+	}
+	
+	public void deposit(double amount) {
+		if(amount>0) {
+			balance+=amount;
+			System.out.println("Deposit successful.");
+			System.out.println("your current balance"+balance);
+		}
+		else {
+			System.out.println("Invalid deposid amount.");
+		}
+	}
+	
+	public void withdraw(double amount) {
+		if(amount>0 && amount <=balance) {
+			balance -=amount;
+			System.out.println("Withdrawal successful.");
+			System.out.println("your current balance"+balance);
+		}
+		else {
+			System.out.println("Invalid withdrawal amount");
+		}
+	}
+	public void checkBalance() {
+		System.out.println("Current balance "+balance);
+	}
+	
+}
+
+class ATM{
+	private BankAccount bankAccount;
+	private Scanner sc;
+	public ATM(BankAccount bankAccount) {
+		this.bankAccount=bankAccount;
+		sc=new Scanner(System.in);
+	}
+	
+	 public void display() {
+	        System.out.println("Welcome to the ATM!");
+	        System.out.println("1. Withdraw");
+	        System.out.println("2. Deposit");
+	        System.out.println("3. Check Balance");
+	        System.out.println("4. Exit");
+	    }
+	 
+	 public void withdraw() {
+	        System.out.print("Enter amount to withdraw: ");
+	        double amount = sc.nextDouble();
+			bankAccount.withdraw(amount);
+	    }
+	 
+	  public void deposit() {
+	        System.out.print("Enter amount to deposit: ");
+	        double amount = sc.nextDouble();
+	        bankAccount.deposit(amount);
+	    }
+	  
+	  public void checkBalance() {
+	        bankAccount.checkBalance();
+	    }
+	  
+	  public void start() {
+	        while (true) {
+	            display();
+	            System.out.print("Enter your choice: ");
+	            int choice = sc.nextInt();
+	            switch (choice) {
+	                case 1:
+	                    withdraw();
+	                    break;
+	                case 2:
+	                    deposit();
+	                    break;
+	                case 3:
+	                    checkBalance();
+	                    break;
+	                case 4:
+	                    System.out.println("Exiting ATM. Have a nice day!");
+	                    sc.close();
+	                    return;
+	                default:
+	                    System.out.println("Invalid choice. Please try again.");
+	            }
+	        }
+	    }
+}
+
+public class Task3 {
+	public static void main(String[] args) {
+		BankAccount account=new BankAccount(2000);
+		ATM atm =new ATM(account);
+		atm.start();
+	}
+
+}
