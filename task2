@@ -1,0 +1,62 @@
+package com.intershipTask;
+import java.util.*;
+
+public class Task2 {
+ public static void main(String[] args) {
+	 Scanner sc=new Scanner(System.in);
+	 
+	 System.out.println("Enter the number of subject: ");
+	 int numberOfSub=sc.nextInt();
+	 
+	 int[] marks=new int[numberOfSub];
+	 
+	 for(int i=0;i<numberOfSub;i++) {
+		 System.out.println("enter marks for subjet "+(i+1)+": ");
+		 marks[i]=sc.nextInt();
+		
+	 }
+	 
+	 int totalMarks=calculateTotalMarks(marks);
+	 
+	 double averagePercentage=calculateAveragePercentage(totalMarks,numberOfSub);
+	 
+	 char grade=calculateGrade(averagePercentage);
+	 
+	 displayResult(totalMarks,averagePercentage,grade);
+	 
+}
+ 
+ public static int calculateTotalMarks(int[] marks) {
+	 
+	 int totalMarks=0;
+	 for(int mark:marks) {
+		 totalMarks+=mark;
+	 }
+	 return totalMarks;
+ }
+ 
+ public static double calculateAveragePercentage(int m,int s) {
+	 return m/s;
+ }
+ 
+ public static char calculateGrade(double p) {
+	 if(p>=90) {
+		 return 'A';
+	 }else if(p>=80) {
+		 return 'B';
+	 }else if(p>=70) {
+		 return 'c';
+	 }else if(p>=60) {
+		 return 'D';
+	 }else {
+		 return 'F';
+	 }
+ }
+ 
+ public static void displayResult(int t,double a,char g) {
+	 System.out.println("Total Marks: "+t);
+	 System.out.println("Average Percentage: "+a);
+	 System.out.println("Grade: "+g);
+ }
+ 
+}
